@@ -1,0 +1,58 @@
+% 1) Tutti gli animali di questa casa sono gatti
+% 2) Ogni animale che ami guardare la luna è adatto a essere un animale domestico
+% 3) Quando detesto un animale lo evito
+% 4) Nessun animale è un carnivoro, a meno che non si aggiri furtivamente nella notte
+% 5) Non c'è un gatto che non uccida i topi
+% 6) Nessun animale si affeziona mai a me, fatta eccezione per quelli che sono in questa casa
+% 7) I canguri non sono adatti ad essere animali domestici
+% 8) Solo i carnivori uccidono i topi
+% 9) detesto gli animali che non si affezionano a me
+% 10) Gli animali che si aggirano furtivamente nella notte amano sempre guardare la luna
+%
+% -> Evito sempre i canguri
+
+begin_problem(Pelletier54).
+
+list_of_descriptions.
+    name({**}).
+    author({**}).
+    status(unsatisfiable).
+    description({**}).
+end_of_list.
+
+list_of_symbols.
+    % G -> x è un gatto
+    % L -> x ama guardare la luna
+    % H -> x è un animale di questa casa
+    % C -> x è carnivoro
+    % D -> x è adatto ad essere un animale domestico
+    % E -> evito x
+    % O -> detesto x
+    % N -> x si aggira furtivamente nella notte
+    % U -> x uccide un topo
+    % T -> x è un topo
+    % A -> x si affeziona a me
+    % K -> x è un canguro
+    predicates[(G,1),(L,1),(H,1),(C,1),(D,1),(E,1),(O,1),(N,1),(U,1),(T,1),(A,1),(K,1)].
+end_of_list.
+
+list_of_formulae(axioms).
+    formula(forall([x], implies(H(x),G(x)))).
+    formula(forall([x], implies(L(x),D(x)))).
+    formula(forall([x], implies(O(x),E(x)))).
+    formula(forall([x], implies(C(x),N(x)))).
+    formula(forall([x], implies(G(x),U(x)))).
+    formula(forall([x], implies(A(x),H(x)))).
+    formula(forall([x], implies(K(x),not(D(x))))).
+    formula(forall([x], implies(U(x),C(x)))).
+    formula(forall([x], implies(not(A(x)), O(x)))).
+    formula(forall([x], implies(N(x),L(x)))).
+end_of_list.
+
+list_of_formulae(conjectures).
+    formula(forall([x], implies(K(x), E(x)))).
+end_of_list.
+
+end_problem.
+
+% -> SPASS beiseite: Proof found.

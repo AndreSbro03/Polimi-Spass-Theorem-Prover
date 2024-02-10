@@ -1,0 +1,48 @@
+% https://webspass.spass-prover.org/
+
+% Per altri puzle https://tptp.org/cgi-bin/SeeTPTP?Category=Problems
+
+% Tutti i comandi terminano con un punto
+begin_problem(Pelletier54). %-> Inizia il problema
+
+% Le descrizioni servono a spass per creare un file dove andrà a lavorare e necessita
+% di qualche informazione, il blocco è necessario scriverlo. Non è necessario però scriverlo 
+% all'esame.
+list_of_descriptions.
+name({*Pelletier's Problem No. 54*}). % stringa vuota sarebbe {**}
+author({*Christoph Weidenbach*}).
+status(unsatisfiable).
+description({*Problem taken in revised form from the "Pelletier Collection", Journal of Automated
+	Reasoning, Vol. 2, No. 2, pages 191-216*}).
+end_of_list.
+
+% Bisogna seguire quest'ordine functions e poi predicates perchè sennò da errore
+list_of_symbols.
+  functions[(g,2),(a,0)]. % (a,0) è una costante, perchè è una funzione di arità 0
+  predicates[(F,2)].
+end_of_list.
+
+list_of_formulae(axioms).
+% le formule sono:
+% and, or, not, implies, equiv (<=>), equal, forall, exists. {Importante la S}
+% Le variabili non vanno mai dichiarate lo dichiarano il forall e l'exist, la variabile
+% va messa tra parentesi quadre. Si può compattare così forall([U,V], ...).
+formula(forall([U],exists([V],forall([W],equiv(F(W,V),equal(W,U)))))).
+end_of_list.
+
+list_of_formulae(conjectures).
+
+formula(not(exists([U],forall([V],equiv(F(V,U),forall([W],implies(F(V,W),exists([X],and(F(X,W),not(exists([Y],and(F(Y,W),F(Y,X))))))))))))).
+
+end_of_list.
+% Lista di settaggi, questo blocco se non si è interessati si può evitare di scriverlo.
+% Non richiesto all'esame.
+list_of_settings(SPASS).
+{*
+set_flag(PGiven,1).
+set_flag(PProblem,1).
+*}
+end_of_list.
+
+end_problem. %-> finisce il problema
+  

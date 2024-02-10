@@ -1,0 +1,28 @@
+% "Tutti gli uomini sono animali, alcuni animali sono carnivori, 
+% dunque alcuni uomini sono carnivori" (L'affermazione è scorretta)
+
+begin_problem(Pelletier54).
+
+list_of_descriptions.
+    name({**}).
+    author({**}).
+    status(unsatisfiable).
+    description({**}).
+end_of_list.
+
+list_of_symbols.
+    predicates[(U,1),(A,1),(C,1)].
+end_of_list.
+
+list_of_formulae(axioms).
+    formula(forall([x], implies(U(x),A(x)))).
+    formula(exists([x], and(A(x),C(x)))).
+end_of_list.
+
+list_of_formulae(conjectures).
+    formula(exists([x], and(U(x),C(x)))).
+end_of_list.
+
+end_problem.
+
+% -> SPASS beiseite: Completion found. 

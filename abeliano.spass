@@ -1,0 +1,46 @@
+% "Se in un gruppo ogni elemento ha periodo 2, allora è abeliano"
+% Si dice periodo di un elemento g del gruppo G, il più piccolo intero positivo n tale 
+% che g^n sia l'elemento neutro del gruppo. 
+% https://it.wikipedia.org/wiki/Gruppo_abeliano
+
+begin_problem(Pelletier54).
+
+list_of_descriptions.
+name({**}).
+author({**}).
+status(unsatisfiable).
+description({**}).
+end_of_list.
+
+list_of_symbols.
+    functions[(u,0),(s,2)].
+end_of_list.
+
+list_of_formulae(axioms).
+
+% Associatività
+formula(
+    forall([x,y,z],equal(s(x,s(y,z)),s(s(x,y),z)))
+).
+
+% u neutro destro e sinistro
+formula(forall([x],equal(s(x,u),x))).
+formula(forall([x],equal(s(u,x),x))).
+
+% per ogni x c'è un y che è il suo inverso
+formula(forall([x],exists([y],and(equal(s(x,y),u),equal(s(y,x),u))))).
+
+% x*x fa sempre u
+formula(forall([x],equal(s(x,x),u))).
+
+end_of_list.
+
+list_of_formulae(conjectures).
+
+formula(forall([x,y],equal(s(x,y),s(y,x)))).
+
+end_of_list.
+
+end_problem.
+
+% -> SPASS beiseite: Proof found.
