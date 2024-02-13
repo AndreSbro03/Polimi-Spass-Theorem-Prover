@@ -1,0 +1,44 @@
+% 1. Il padre di Giulietta è Capuleti.
+% 2. Capuleti non ama i Montecchi.
+% 3. Capuleti ama Giulietta e tutti quelli che sono amati da Giulietta.
+% 4. Giulietta ama Romeo.
+% 5. Romeo è un Montecchi.
+% Si noti che Capuleti è il nome proprio del padre di Giulietta, mentre i Montecchi sono una famiglia.
+% Si scriva un programma SPASS per verificare che le cinque affermazioni sono
+% tra loro contraddittorie
+
+begin_problem(Pelletier54).
+
+list_of_descriptions.
+name({**}).
+author({**}).
+status(unsatisfiable).
+description({**}).
+end_of_list.
+
+% c -> capuleti
+% r -> romeo
+% g -> giulietta
+% A -> x ama y
+% M -> x è un montecchi
+% P -> x è padre di y
+
+list_of_symbols.
+    functions[(c,0),(r,0),(g,0)].
+    predicates[(A,2),(M,1),(P,2)].
+end_of_list.
+
+list_of_formulae(axioms).
+    formula(P(c,g)).
+    formula(forall([x],implies(M(x),not(A(c,x))))).
+    formula(A(c,g)).
+    formula(forall([x], implies(A(g,x),A(c,x)))).
+    formula(A(g,r)).
+    formula(M(r)).
+end_of_list.
+
+list_of_formulae(conjectures).
+    
+end_of_list.
+
+end_problem.

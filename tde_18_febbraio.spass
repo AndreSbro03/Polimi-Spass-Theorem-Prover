@@ -1,0 +1,54 @@
+begin_problem(Pisello_durissimo).
+
+    list_of_descriptions.
+    name({**}).
+    author({**}).
+    status(unsatisfiable).
+    description({**}).
+    end_of_list.
+
+    list_of_symbols.
+        functions[(m,0),(f,1)].
+        predicates[(R,2),(S,1)].
+    end_of_list.
+
+    list_of_formulae(axioms).
+
+        formula(forall([x],R(x,x))).
+        formula(forall([x,y],implies(
+            and(R(x,y),R(y,x)),
+            equal(y,x)
+            ))).
+        formula(forall([x,y,z],implies(
+            and(R(x,y),R(y,z)),
+            R(x,z)
+            ))).
+
+        formula(forall([x,y],implies(
+            R(x,y),
+            R(f(x),f(y))
+        ))).
+
+        formula(forall([x],implies(
+            R(x,m),
+            equal(x,m)
+        ))).
+
+        formula(forall([x],equiv(
+            equal(f(x),m),
+            S(x)
+        ))).
+        
+    end_of_list.
+
+    list_of_formulae(conjectures).
+    
+        formula(forall([x,y,z],implies(
+            and(S(x),S(y),R(x,y),R(z,y)),
+            S(z)
+            ))).
+
+
+    end_of_list.
+
+end_problem.

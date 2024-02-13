@@ -1,0 +1,38 @@
+begin_problem(Pelletier54).
+
+list_of_descriptions.
+    name({**}).
+    author({**}).
+    status(unsatisfiable).
+    description({**}).
+end_of_list.
+
+% F -> x si fida di y
+% R -> x e y iniziano un rapporto commericale
+% a, b, c -> aziende
+
+list_of_symbols.
+    % functions[(a,0),(b,0),(c,0)]. NON PUOI USARE COSTANTI PERCHE' LE LETTERE SONO GENERICHE
+    predicates[(F,2),(R,2)].
+end_of_list.
+
+list_of_formulae(axioms).
+    % In una rete commerciale prima che due attività inizino un rapporto commerciale, devono fidarsi l’una dell’altra. 
+    % Si sa che se l’attività A si fida dell’attività B che si fida dell’attività C, allora anche A 
+    % si fida dell’attività C. La rete è configurata in modo che se l’attività A è di 
+    % fiducia per una certa attività, allora A ha fiducia in almeno un’altra attività.
+    % Si sa anche che non ci sono due distinte attività che si fidano della stessa attività. 
+    formula(forall([x,y],implies(R(x,y),and(F(x,y),F(y,x))))).
+    formula(forall([x,y,z],implies(and(F(x,y),F(y,z)),F(x,z)))).
+    formula(forall([x],implies(exists([y],F(y,x)),exists([z],F(x,z))))).
+    formula(forall([x,y],implies(not(equal(x,y)),not(exists([z],and(F(x,z),F(y,z))))))).
+
+end_of_list.
+
+list_of_formulae(conjectures).
+    % Mostrare che se A ha fiducia in B, allora A e B possono iniziare un rapporto commerciale.
+    formula(forall([x,y],implies(F(x,y),R(y,x)))).  % -> proof found
+
+end_of_list.
+
+end_problem.

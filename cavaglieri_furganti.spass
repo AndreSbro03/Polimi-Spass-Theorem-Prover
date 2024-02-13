@@ -1,0 +1,54 @@
+% In un’isola si trovano esattamente due tipi di persone: i cavalieri, che dicono
+% sempre la verità, e i furfanti, che mentono sempre. Su quest’isola si trovano
+% tre persone: A, B, C. A afferma che tutti e tre sono furfanti. B dice che fra
+% di loro c’è esattamente un cavaliere.
+% Cosa sono A, B, C?
+
+begin_problem(Pelletier54).
+
+list_of_descriptions.
+    name({**}).
+    author({**}).
+    status(unsatisfiable).
+    description({**}).
+end_of_list.
+
+list_of_symbols.
+    functions[(a,0),(b,0),(c,0)]. % personaggi
+    predicates[(cav,1),(fur,1)].
+end_of_list.
+
+list_of_formulae(axioms).
+    formula(forall([x],equiv(cav(x),not(fur(x))))).
+    
+    formula(implies(cav(a),and(fur(a),fur(b),fur(c)))).
+    formula(implies(fur(a),not(and(fur(a),fur(b),fur(c))))).
+
+    formula(implies(cav(b),or(
+        and(cav(a),fur(b),fur(c)),
+        and(fur(a),cav(b),fur(c)),
+        and(fur(a),fur(b),cav(c))))).
+    formula(implies(fur(b),not(or(
+        and(cav(a),fur(b),fur(c)),
+        and(fur(a),cav(b),fur(c)),
+        and(fur(a),fur(b),cav(c)))))).
+
+
+end_of_list.
+
+list_of_formulae(conjectures).
+    % formula(fur(a)). -> proof found
+    % formula(cav(b)). -> proof found
+    % formula(fur(c)). -> proof found
+
+end_of_list.
+
+list_of_settings(SPASS).
+{*
+set_flag(PGiven,1).
+set_flag(PProblem,1).
+*}
+end_of_list.
+
+
+end_problem.

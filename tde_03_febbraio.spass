@@ -1,0 +1,47 @@
+begin_problem(PiselloPalle).
+    list_of_descriptions.
+        name({**}).
+        author({**}).
+        status(unsatisfiable).
+        description({**}).
+    end_of_list.
+
+    list_of_symbols.
+        predicates[(R,2),(A,1),(B,1)].
+    end_of_list.
+
+    list_of_formulae(axioms).
+        formula(forall([x],or(
+            A(x),B(x)
+        ))).
+
+        formula(forall([x],not(R(x,x)))).
+        formula(forall([x,y],equiv(R(x,y),A(x,y)))).
+
+        formula(forall([x,y],implies(
+            A(x,y),
+            or(
+                and(equal(x,a),equal(y,b)),
+                and(equal(x,b),equal(y,a))
+            )
+        ))).
+
+        formula(forall([x,y,z],implies(
+            and(R(x,y),R(y,z)),
+            R(x,z)
+        ))).
+
+        formula(forall([x],implies(
+            equal(x,b),
+            exists([y],R(x,y))
+        ))).
+
+    end_of_list.
+
+    list_of_formulae(conjectures).
+        formula(exists([x],implies(
+            equal(x,a),
+            forall([y],not(R(x,y)))))).
+    end_of_list.
+
+end_problem.

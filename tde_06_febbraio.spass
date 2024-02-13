@@ -1,0 +1,46 @@
+% Si consideri un monoide M e un omomorfismo di monoidi f : M → M. 
+% Detto S l’insieme degli elementi invertibili di M, mostrare che 
+% se x appartiene ad S allora anche f(x) appartiene ad S.
+
+begin_problem(Pelletier54).
+
+list_of_descriptions.
+    name({**}).
+    author({**}).
+    status(unsatisfiable).
+    description({**}).
+end_of_list.
+
+% p -> (x + y)
+
+list_of_symbols.
+    functions[(p,2),(f,1),(u,0)].
+end_of_list.
+
+list_of_formulae(axioms).
+    % Associatività
+    formula(forall([x,y,z],equal(p(p(x,y),z),p(x,p(y,z))))).
+
+    % Elem neutro
+    formula(forall([x],and(equal(p(u,x),x),equal(p(x,u),x)))).
+
+    % Omomorfismo
+    formula(equal(f(u),u)).
+    formula(forall([x,y],equal(f(p(x,y)),p(f(x),f(y))))).
+
+end_of_list.
+
+list_of_formulae(conjectures).
+    % Detto S l’insieme degli elementi invertibili di M, mostrare che 
+    % se x appartiene ad S allora anche f(x) appartiene ad S.
+    % Congettura
+    formula(forall([x],implies(
+        exists([y],and(equal(p(x,y),u),equal(p(y,x),u))),
+        exists([z],and(equal(p(f(x),z),u),equal(p(z,f(x)),u)))        
+        ))). 
+    
+    % -> proof found
+
+end_of_list.
+
+end_problem.
